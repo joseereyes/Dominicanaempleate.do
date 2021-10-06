@@ -1,0 +1,12 @@
+.aside {
+    height: 600px;
+    background-color: #c52c2c;
+    width: 252px;
+    border-radius: 4px;
+}
+
+@media (max-width: 714px) {
+    .aside {
+        display: none;
+    }
+}
