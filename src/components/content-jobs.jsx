@@ -51,7 +51,6 @@ const ContentJobs = (jobs) => {
             <div className="display-flex justify-content-between mb-3 flex-wrap">
 
                 <div className="display-flex">
-                    {console.log(results)}
                     <h6 className="ml-4 mt-2 mr-2 mb-2 results-orderby">{results > 0 ? (results + " empleos encontrados.") : (<span>0 resultados.</span>)}</h6>
 
                     <div className="ml-2 display-flex align-items-center">

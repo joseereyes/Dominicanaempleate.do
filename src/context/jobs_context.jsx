@@ -41,6 +41,9 @@ const JobsContextComponent = ({ children }) => {
                     createJobsArr.push(datata)
                 })
                 setJobsList(createJobsArr)
+
+                const todaysjob = createJobsArr.filter(item => (new Date(item.date).toISOString().includes(new Date().toISOString())))
+
             })
 
             filterObject.value && setDefaultPage(1)
