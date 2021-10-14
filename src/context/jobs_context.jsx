@@ -14,6 +14,7 @@ const JobsContextComponent = ({ children }) => {
     const [results, setResults] = useState(0)
     const [filterObject, setFilterObjec] = useState({ type: null, value: null, startPage: null })
     const [defaultPage, setDefaultPage] = useState(null)
+    const [todaysJob,setTodaysJob] = useState([])
 
     const removeAccents = (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -42,8 +43,8 @@ const JobsContextComponent = ({ children }) => {
                 })
                 setJobsList(createJobsArr)
 
-                const todaysjob = createJobsArr.filter(item => (new Date(item.date).toISOString().includes(new Date().toISOString())))
-
+                const todaysjob = createJobsArr.filter(item => (new Date(item.dateReg).toLocaleDateString().includes(new Date().toLocaleDateString())))
+                setTodaysJob(todaysjob.length)
             })
 
             filterObject.value && setDefaultPage(1)
@@ -72,7 +73,8 @@ const JobsContextComponent = ({ children }) => {
                 setFilterObjec,
                 results,
                 filteredjobList,
-                defaultPage
+                defaultPage,
+                todaysJob
             }
         } >
             {children}
