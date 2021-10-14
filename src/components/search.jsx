@@ -7,7 +7,7 @@ import { useJobsContext } from "../context/jobs_context";
 
 const Search = () => {
 
-    const { setFilterObjec } = useJobsContext();
+    const { setFilterObjec,todaysJob } = useJobsContext();
 
     return (
         <div className="search-container ">
@@ -30,7 +30,7 @@ const Search = () => {
                 <div className="line-search-form"></div>
 
                 <div className="after-search-form mt-2  display-flex align-items-center   justify-content-center">
-                    <p className="ml-3 mr-3 ">10 nuevos empleos  hoy.</p>
+                    <p className="ml-3 mr-3 ">{todaysJob} nuevos empleos  hoy.</p>
                 </div>
             </div>
 
