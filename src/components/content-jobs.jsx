@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import jobLogo from "../assets/icons/logo192.svg"
 import locationIcon from "../assets/icons/locationICon.svg"
 import alertIcon from "../assets/icons/alertIcon.svg"
+import mailIcon from "../assets/icons/email.png"
+import calendarIcon from "../assets/icons/calendar.png"
 import { useJobsContext } from "../context/jobs_context"
 import { Pagination } from "react-bootstrap";
 
@@ -93,9 +95,24 @@ const ContentJobs = (jobs) => {
                         </div>
                     </div>
 
-                    <div className="location-job mt-3 pl-4">
-                        <img src={locationIcon} alt="" />
-                        <p className="">{job.loc}</p>
+                    <div className="display-flex">
+                        <div className="location-job mt-3 pl-4">
+                            <img src={locationIcon} alt="Ubicación" />
+                            <p className="">{job.loc}</p>
+
+                        </div>
+
+                        <div className="location-job mt-3 pl-4">
+                            <img className="job-desc-icons" src={mailIcon} alt="CV de la vacante" />
+                            <p className=""><a className="job-content-mail-href" href={`mailto:${job.email}`}>{job.email}</a></p>
+                            {console.log(job)}
+                        </div>
+
+                        <div className="location-job mt-3 pl-4">
+                            <img className="job-desc-icons" src={calendarIcon} alt="Fecha de empleo" />
+                            <p className="">{new Date(job.date).toLocaleDateString()}</p>
+                            {console.log(job)}
+                        </div>
                     </div>
 
                     <p className="pt-3 pl-4 pr-4 pb-4 job-desc">

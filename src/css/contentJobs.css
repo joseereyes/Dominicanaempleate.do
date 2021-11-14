@@ -60,10 +60,18 @@
     border-radius: 5px;
 }
 
+.job-desc-icons {
+    width: 12px;
+    height: 17px;
+}
+
+.job-content-mail-href {
+    text-decoration: none;
+    color: #6D87A6;
+}
+
 @media (max-width: 1025px) {
-    .container-md,
-    .container-sm,
-    .container {
+    .container-md, .container-sm, .container {
         max-width: 866px;
     }
 }
