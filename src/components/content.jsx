@@ -11,7 +11,7 @@ const Content = () => {
     return (
         <>
             <Search />
-            <div className="container mt-3 d-flex">
+            <div className="container mt-3 d-flex justify-content-center ">
 
                 <ContentAside />
                 <ContentJobs />

@@ -95,7 +95,7 @@ const ContentJobs = (jobs) => {
                         </div>
                     </div>
 
-                    <div className="display-flex">
+                    <div className="display-flex flex-wrap font-size-14px ">
                         <div className="location-job mt-3 pl-4">
                             <img src={locationIcon} alt="Ubicación" />
                             <p className="">{job.loc}</p>
@@ -105,13 +105,13 @@ const ContentJobs = (jobs) => {
                         <div className="location-job mt-3 pl-4">
                             <img className="job-desc-icons" src={mailIcon} alt="CV de la vacante" />
                             <p className=""><a className="job-content-mail-href" href={`mailto:${job.email}`}>{job.email}</a></p>
-                            {console.log(job)}
+
                         </div>
 
                         <div className="location-job mt-3 pl-4">
                             <img className="job-desc-icons" src={calendarIcon} alt="Fecha de empleo" />
                             <p className="">{new Date(job.date).toLocaleDateString()}</p>
-                            {console.log(job)}
+
                         </div>
                     </div>
 
@@ -122,13 +122,18 @@ const ContentJobs = (jobs) => {
 
             ))}
 
-            <Pagination className="pagination-jobs">
-                <Pagination.First onClick={() => { set_range_start_pag(range_start_pag - 7) }} />
-                {arrPages.slice(range_start_pag, range_start_pag + 7)}
-                <Pagination.Last onClick={() => { set_range_start_pag(range_start_pag + 7) }} />
-            </Pagination>
+            {cases_to_show.length > 0 ? (
+                <Pagination className="pagination-jobs">
+                    <Pagination.First onClick={() => { set_range_start_pag(range_start_pag - 7) }} />
+                    {arrPages.slice(range_start_pag, range_start_pag + 7)}
+                    <Pagination.Last onClick={() => { set_range_start_pag(range_start_pag + 7) }} />
+                </Pagination>
+            )
+            :
+            (<></>)
+            }
 
-        </div>
+        </div >
     )
 }
 

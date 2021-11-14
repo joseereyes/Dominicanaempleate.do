@@ -6,9 +6,8 @@ const ContentAside = () => {
 
     return (
 
-        <div className="aside">
-            <img src={asideAds} style={{ width: "100%", height:600, objectFit: "cover" }} alt="" />
-        </div>
+        <>
+        </>
 
 
     );
