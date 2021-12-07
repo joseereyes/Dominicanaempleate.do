@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import jobLogo from "../assets/icons/logo192.svg"
-import locationIcon from "../assets/icons/locationICon.svg"
-import alertIcon from "../assets/icons/alertIcon.svg"
-import mailIcon from "../assets/icons/email.png"
-import calendarIcon from "../assets/icons/calendar.png"
-import { useJobsContext } from "../context/jobs_context"
+import jobLogo from "../../assets/icons/logo192.svg"
+import locationIcon from "../../assets/icons/locationICon.svg"
+import alertIcon from "../../assets/icons/alertIcon.svg"
+import mailIcon from "../../assets/icons/email.png"
+import calendarIcon from "../../assets/icons/calendar.png"
+import { useJobsContext } from "../../context/jobs_context"
 import { Pagination } from "react-bootstrap";
+import { useNavigate } from "react-router";
+
 
 const ContentJobs = (jobs) => {
+
+    const navigate = useNavigate()
 
     // const [ontt, setontt] = useState("")
     // const [jo, setjo] = useState([])
@@ -85,13 +89,21 @@ const ContentJobs = (jobs) => {
                 />
             }
 
-            {cases_to_show.length > 0 && cases_to_show.map((job) => (
-                <div className="job-container " key={job.title}>
+            {cases_to_show.length > 0 && cases_to_show.map(job => (
+                <div className="job-container" key={job.key}  >
                     <div className="display-flex">
                         <img className="job-logo " src={jobLogo} alt="" />
                         <div className="info-container">
-                            <h6 className="job-title pr-3">{job.title}</h6>
-                            <h6 className="job-category">{job.category}</h6>
+
+                            <h1 className="job-title pr-3"
+
+                                onClick={() => navigate("/job/" + job.key, { replace: true })}
+                            >
+                                {job.title}
+                            </h1>
+
+
+                            <h1 className="job-category">{job.category}</h1>
                         </div>
                     </div>
 
@@ -117,22 +129,35 @@ const ContentJobs = (jobs) => {
 
                     <p className="pt-3 pl-4 pr-4 pb-4 job-desc">
                         {job.desc}
+                        <span
+                            className="view-more-job-desc"
+                            onClick={() => navigate("/job/" + job.key, { replace: true })}
+                        >
+                            <br />
+                            <br />
+                            Ver mas
+                        </span>
                     </p>
                 </div>
 
-            ))}
-
-            {cases_to_show.length > 0 ? (
-                <Pagination className="pagination-jobs">
-                    <Pagination.First onClick={() => { set_range_start_pag(range_start_pag - 7) }} />
-                    {arrPages.slice(range_start_pag, range_start_pag + 7)}
-                    <Pagination.Last onClick={() => { set_range_start_pag(range_start_pag + 7) }} />
-                </Pagination>
-            )
-            :
-            (<></>)
+            ))
             }
 
+            {
+                cases_to_show.length > 0 ?
+                    (
+                        <Pagination className="pagination-jobs">
+                            <Pagination.First onClick={() => { set_range_start_pag(range_start_pag - 7) }} />
+                            {arrPages.slice(range_start_pag, range_start_pag + 7)}
+                            <Pagination.Last onClick={() => { set_range_start_pag(range_start_pag + 7) }} />
+                        </Pagination>
+                    )
+                    :
+                    (
+                        <></>
+                    )
+
+            }
         </div >
     )
 }

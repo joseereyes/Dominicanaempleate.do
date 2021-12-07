@@ -1,18 +1,27 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap"
-import BrandingLogo from "../assets/icons/jobIConn.svg"
-import jobIcon from "../assets/icons/jobICon.svg"
-
+import BrandingLogo from "../../assets/icons/jobIConn.svg"
+import jobIcon from "../../assets/icons/jobICon.svg"
+import { useNavigate } from "react-router";
 
 
 const TopVar = () => {
+
+    const navigate = useNavigate()
 
     return (
         <>
 
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home"><img src={BrandingLogo} alt="" /></Navbar.Brand>
+                    <Navbar.Brand
+
+                        onClick={() => { navigate("/", { replace: true }) }}
+                        style={{cursor:"pointer"}}
+                    >
+                        <img src={BrandingLogo} alt="" />
+
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

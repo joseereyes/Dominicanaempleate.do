@@ -14,7 +14,9 @@ const JobsContextComponent = ({ children }) => {
     const [results, setResults] = useState(0)
     const [filterObject, setFilterObjec] = useState({ type: null, value: null, startPage: null })
     const [defaultPage, setDefaultPage] = useState(null)
-    const [todaysJob,setTodaysJob] = useState([])
+    const [todaysJob, setTodaysJob] = useState([])
+    const [jobId, setJobId] = useState("")
+    const [jobObject, setJobObject] = useState(null)
 
     const removeAccents = (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -24,23 +26,16 @@ const JobsContextComponent = ({ children }) => {
 
         const fetchData = async () => {
 
-            // db.child("Jobs").orderByChild("title").equalTo("Agente de Seguridad en Zona Franca San Isidro").on('value', data => {
-            //     let createJobsArr = []
-            //     data.forEach((item) => {
-
-            //         let datata = item.val()
-            //         createJobsArr.push(datata)
-            //     })
-            //     setJobsList(createJobsArr)
-            // })
-
             db.child('Jobs').orderByKey().on('value', data => {
                 let createJobsArr = []
+
                 data.forEach((item) => {
 
                     let datata = item.val()
+                    datata.key = item.key
                     createJobsArr.push(datata)
                 })
+
                 setJobsList(createJobsArr)
 
                 const todaysjob = createJobsArr.filter(item => (new Date(item.dateReg).toLocaleDateString().includes(new Date().toLocaleDateString())))
@@ -66,6 +61,21 @@ const JobsContextComponent = ({ children }) => {
 
     }, [filterObject, jobsList])
 
+    useEffect(() => {
+
+        const getById = () => {
+
+            if (jobId) {
+                db.child("Jobs").orderByKey().equalTo(jobId).on("value", data => {
+                    setJobObject(Object.values(data.val())[0])
+                })
+            }
+
+        }
+        getById()
+
+    }, [jobId])
+
     return (
         <JobsContext.Provider value={
 
@@ -74,7 +84,9 @@ const JobsContextComponent = ({ children }) => {
                 results,
                 filteredjobList,
                 defaultPage,
-                todaysJob
+                todaysJob,
+                setJobId,
+                jobObject
             }
         } >
             {children}

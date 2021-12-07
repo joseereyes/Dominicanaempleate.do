@@ -27,8 +27,16 @@
     font-weight: bold;
 }
 
+.job-title:hover {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #6D87A6;
+}
+
 .job-category {
     font-weight: 400;
+    font-size: 16px;
 }
 
 .location-job {
@@ -68,7 +76,20 @@
 .job-content-mail-href {
     text-decoration: none;
     color: #6D87A6;
- 
+
+}
+
+.one-job-container {
+    width: 79%;
+    min-height: 390px;
+    border-radius: 4px;
+    background-color: #DFE4ED;
+}
+
+.view-more-job-desc{
+    cursor: pointer;
+    font-weight: bold;
+    color: #6D87A6;
 }
 
 @media (max-width: 1025px) {
@@ -81,6 +102,7 @@
     .results-orderby {
         font-size: 13px;
     }
+
     .span-orderby {
         font-size: 13px;
     }
@@ -91,13 +113,18 @@
         display: none;
         width: 100%;
     }
+
     .contentJobs {
         height: 80vh;
         width: 100%;
         margin-left: 0px;
     }
+
     .job-desc {
         font-size: 13px;
+    }
+    .one-job-container {
+        width: 100%;
     }
 }
 
@@ -105,7 +132,9 @@
     .jobs-alert {
         margin: 5px auto;
     }
-    .contentJobs {
+
+    
+    .contentJobs,.one-job-container  {
         width: 100%;
     }
 }

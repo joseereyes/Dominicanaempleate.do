@@ -1,9 +1,8 @@
 import React from "react";
-
-import topimgcontainer from "../assets/icons/Background.jpg"
-import searchIcon from "../assets/icons/SearchICon.svg"
-import locationIcon from "../assets/icons/locationICon.svg"
-import { useJobsContext } from "../context/jobs_context";
+import topimgcontainer from "../../assets/icons/Background.jpg"
+import searchIcon from "../../assets/icons/SearchICon.svg"
+import locationIcon from "../../assets/icons/locationICon.svg"
+import { useJobsContext } from "../../context/jobs_context";
 
 const Search = () => {
 
