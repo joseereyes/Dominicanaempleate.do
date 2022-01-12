@@ -32,7 +32,7 @@ const ContentJobs = (jobs) => {
             let oneARr = []
             let pagesCount = filteredjobList.length / artperpage;
 
-            for (let i = 1; i <= pagesCount; i++) {
+            for (let i = 1; i <= pagesCount + 1; i++) {
 
                 oneARr.push(<Pagination.Item onClick={() => { setPage(i) }} key={i} active={page === i ? "active" : ""}>{i}</Pagination.Item>)
 

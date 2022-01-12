@@ -13,6 +13,7 @@ const JobsContextComponent = ({ children }) => {
     const [filteredjobList, setFilteredJobList] = useState([])
     const [results, setResults] = useState(0)
     const [filterObject, setFilterObjec] = useState({ type: null, value: null, startPage: null })
+    const [filterObject_2, setFilterObjec_2] = useState({ type: null, value: null, startPage: null })
     const [defaultPage, setDefaultPage] = useState(null)
     const [todaysJob,setTodaysJob] = useState([])
 
@@ -54,23 +55,66 @@ const JobsContextComponent = ({ children }) => {
 
     useEffect(() => {
 
+        setFilteredJobList(jobsList)
+        setResults(jobsList.length)
+
+        let temp_job_list
+
         if (filterObject.value) {
 
+            
             const data_By_No = jobsList.filter(item => (removeAccents(item.title.toLowerCase()).includes(removeAccents(filterObject.value.toLowerCase()))))
             setResults(data_By_No.length)
-            setFilteredJobList(data_By_No)
+            temp_job_list = data_By_No
+
+
+            if(filterObject_2.value){
+
+                const data_By_No = temp_job_list.filter(item => (removeAccents(item.loc.toLowerCase()).includes(removeAccents(filterObject_2.value.toLowerCase()))))
+                setResults(data_By_No.length)
+                temp_job_list = data_By_No
+                
+            }
+
+        
+            setFilteredJobList(temp_job_list)
+
         } else {
-            setFilteredJobList(jobsList)
-            setResults(jobsList.length)
+
+            if(filterObject_2.value){
+
+        
+                const data_By_No = jobsList.filter(item => (removeAccents(item.loc.toLowerCase()).includes(removeAccents(filterObject_2.value.toLowerCase()))))
+                setResults(data_By_No.length)
+                temp_job_list = data_By_No
+    
+                if(filterObject.value){
+    
+                    const data_By_No = temp_job_list.filter(item => (removeAccents(item.title.toLowerCase()).includes(removeAccents(filterObject.value.toLowerCase()))))
+                    setResults(data_By_No.length)
+                    temp_job_list = data_By_No
+    
+                    
+                }
+
+                setFilteredJobList(temp_job_list)
+
+            }
+           
         }
 
-    }, [filterObject, jobsList])
+
+
+
+
+    }, [filterObject,filterObject_2, jobsList])
 
     return (
         <JobsContext.Provider value={
 
             {
                 setFilterObjec,
+                setFilterObjec_2,
                 results,
                 filteredjobList,
                 defaultPage,
